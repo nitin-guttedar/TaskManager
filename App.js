@@ -6,20 +6,27 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import AuthScreen from './src/screens/AuthScreen'
+import TaskList from './src/screens/TaskList'
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  const Stack = createNativeStackNavigator()
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Auth'>
+        <Stack.Screen name='Auth' component={AuthScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='TaskList' component={TaskList} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
