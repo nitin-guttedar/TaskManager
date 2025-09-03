@@ -1,12 +1,13 @@
-import { Image, StyleSheet, Text, View, FlatList } from 'react-native'
+import { Image, StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { dw } from '../constants/Dimensions'
 import TaskCard from '../components/TaskCard'
+import { useNavigation } from '@react-navigation/native'
 
 const AddIcon = require('../assets/Add.png')
-
 const TaskList = () => {
+    const navigation = useNavigation()
     const tasks = [
         { id: '1', title: 'Buy groceries', description: 'Milk, Bread, Eggs, Fruits', priority: 'high' },
         { id: '2', title: 'Finish project', description: 'Complete React Native task manager', priority: 'medium' },
@@ -27,15 +28,18 @@ const TaskList = () => {
                         title={item.title}
                         description={item.description}
                         priority={item.priority}
+                        onPress={() => navigation.navigate("Task Details", { task: item })}
                     />
                 )}
                 contentContainerStyle={{ paddingBottom: 100 }}
                 showsVerticalScrollIndicator={false}
             />
-            <Image
-                source={AddIcon}
-                style={styles.addIcon}
-            />
+            <TouchableOpacity onPress={() => navigation.navigate("Add Task")}>
+                <Image
+                    source={AddIcon}
+                    style={styles.addIcon}
+                />
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }

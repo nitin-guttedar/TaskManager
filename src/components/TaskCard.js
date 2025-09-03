@@ -1,33 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { dh, dw } from '../constants/Dimensions'
 
-const TaskCard = ({ title, description, priority }) => {
-    // dynamic color style based on priority
-    const getPriorityColor = () => {
-        switch (priority.toLowerCase()) {
-            case 'high':
-                return styles.priorityHigh
-            case 'medium':
-                return styles.priorityMedium
-            case 'low':
-                return styles.priorityLow
-            default:
-                return styles.priorityDefault
-        }
-    }
-
+const TaskCard = ({ title, description, priority, onPress }) => {
     return (
-        <View style={styles.container}>
-            <View style={styles.content}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.description}>{description}</Text>
-                <View style={styles.priorityRow}>
-                    <Text style={styles.priorityLabel}>Priority :</Text>
-                    <Text style={[styles.priority, getPriorityColor()]}>  {priority}</Text>
+        <TouchableOpacity activeOpacity={0.9} onPress={onPress}>
+            <View style={styles.container}>
+                <View style={styles.content}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.description}>{description}</Text>
+                    <View style={styles.priorityRow}>
+                        <Text style={styles.priorityLabel}>Priority :</Text>
+                        <Text style={styles.priority}>  {priority}</Text>
+                    </View>
                 </View>
             </View>
-        </View >
+        </TouchableOpacity>
     )
 }
 
@@ -46,7 +34,7 @@ const styles = StyleSheet.create({
         width: dw / 1.3,
         minHeight: dh / 8,
         alignSelf: 'center',
-        marginVertical: dh * 0.020
+        marginVertical: dh * 0.01
     },
     content: {
         flexDirection: 'column',
@@ -65,7 +53,6 @@ const styles = StyleSheet.create({
     priorityRow: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
-        marginVertical: dh * 0.01
     },
     priorityLabel: {
         color: 'black',
@@ -73,20 +60,7 @@ const styles = StyleSheet.create({
     priority: {
         fontSize: 13,
         fontWeight: '400',
-        alignSelf: 'flex-end'
-    },
-
-    // 🔥 new styles (added only)
-    priorityHigh: {
         color: 'red',
-    },
-    priorityMedium: {
-        color: 'orange',
-    },
-    priorityLow: {
-        color: 'green',
-    },
-    priorityDefault: {
-        color: 'gray',
+        alignSelf: 'flex-end'
     }
 })

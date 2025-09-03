@@ -15,6 +15,8 @@ import {
 } from 'react-native-safe-area-context';
 import AuthScreen from './src/screens/AuthScreen'
 import TaskList from './src/screens/TaskList'
+import TaskDetails from './src/screens/TaskDetails'
+import AddTask from './src/screens/AddTask'
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -25,6 +27,8 @@ function App() {
       <Stack.Navigator initialRouteName='Auth'>
         <Stack.Screen name='Auth' component={AuthScreen} options={{ headerShown: false }} />
         <Stack.Screen name='TaskList' component={TaskList} options={{ headerShown: false }} />
+        <Stack.Screen name='Task Details' component={TaskDetails} options={{ headerShown: false }} />
+        <Stack.Screen name='Add Task' component={AddTask} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
