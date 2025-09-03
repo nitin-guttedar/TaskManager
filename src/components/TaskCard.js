@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     priorityRow: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
+        marginVertical: dh * 0.01
     },
     priorityLabel: {
         color: 'black',
