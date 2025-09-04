@@ -107,7 +107,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
       <View style={styles.headerRow}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={backIcon} style={styles.backIcon} resizeMode="contain" />
@@ -116,8 +115,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
           {editingId ? 'Edit Task' : 'Add Task'}
         </Text>
       </View>
-
-      {/* Title Input */}
       <TextInput
         style={styles.input}
         placeholder="Title"
@@ -125,8 +122,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
         value={title}
         onChangeText={setTitle}
       />
-
-      {/* Description Input */}
       <TextInput
         style={[styles.input, { height: dh * 0.12 }]}
         placeholder="Description"
@@ -135,8 +130,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
         onChangeText={setDescription}
         multiline
       />
-
-      {/* Due Date Row */}
       <TouchableOpacity
         style={styles.row}
         onPress={() => setShowDatePicker(true)}
@@ -144,8 +137,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
         <Text style={styles.label}>Due Date</Text>
         <Text style={styles.value}>{dayjs(dueDate).format('YYYY-MM-DD HH:mm')}</Text>
       </TouchableOpacity>
-
-      {/* Priority Row */}
       <TouchableOpacity
         style={styles.row}
         onPress={() => {
@@ -157,8 +148,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
         <Text style={styles.label}>Priority</Text>
         <Text style={styles.value}>{priority}  ›</Text>
       </TouchableOpacity>
-
-      {/* Date/Time Pickers */}
       {showDatePicker && (
         <DateTimePicker
           value={dueDate}
@@ -185,8 +174,6 @@ export default function AddEditTaskScreen({ route, navigation }) {
           onChange={onDateChange}
         />
       )}
-
-      {/* Save Button */}
       <TouchableOpacity style={styles.saveButton} onPress={save}>
         <Text style={styles.saveText}>
           {editingId ? 'Save Changes' : 'Create Task'}

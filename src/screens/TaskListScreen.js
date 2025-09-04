@@ -19,7 +19,7 @@ import {
 import { logout } from '../store/authSlice';
 import TaskItem from '../components/TaskItem';
 import EmptyState from '../components/EmptyState';
-import { subscribeNet } from '../utils/net';
+
 import { dw } from '../constants/Dimensions';
 
 const AddIcon = require('../assets/Add.png');
@@ -27,16 +27,6 @@ const AddIcon = require('../assets/Add.png');
 export default function TaskListScreen({ navigation }) {
   const dispatch = useDispatch();
   const { tasks, filters } = useSelector(s => s.tasks);
-
-  useEffect(() => {
-    const unsub = subscribeNet(({ isConnected }) => {
-      if (isConnected) {
-        dispatch(clearSyncQueue());
-      }
-    });
-    return unsub;
-  }, []);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
